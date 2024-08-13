@@ -3,10 +3,10 @@ using namespace std;
 
 int main(void)
 {
-    int N;
-    cin >> N;
+    int A, B;
+    cin >> A >> B;
 
-    cout << N * N << endl;
+    cout << A + B << endl;
 
     return 0;
 }
