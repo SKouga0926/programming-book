@@ -17,24 +17,22 @@ int main(void)
 
     // 初期化処理
     for (int i = 0; i <= N; i++)
-        for (int j = 0; j <= W; j++) {
-            dp[i][j] = INT32_MIN;
+        for (int j = 0; j <= 100000; j++) {
+            dp[i][j] = INT32_MAX;
         }
 
     // 動的計画法
     dp[0][0] = 0;
     for (int i = 1; i <= N; i++)
-        for (int j = 0; j <= W; j++) {
-            
-            if (j - w[i] >= 0) dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - w[i]] + v[i]);
+        for (int j = 0; j <= 100000; j++) {
+            if (j - v[i] >= 0) dp[i][j] = min(dp[i - 1][j], dp[i - 1][j - v[i]] + w[i]);
             else dp[i][j] = dp[i - 1][j];
         }
 
     // 結果出力
-    ll Answer = 0;
-
-    for (int i = 0; i <= W; i++) {
-        Answer = max(Answer, dp[N][i]);
+    ll Answer;
+    for (int i = 0; i <= 100000; i++) {
+        if (dp[N][i] <= W) Answer = i;
     }
 
     cout << Answer << endl;
